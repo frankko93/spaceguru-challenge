@@ -9,6 +9,11 @@ Challenge BackEnd para Space Guru
 - Ejecutar tests con `go test -v ./src/api/controllers -run Test`
 - En el archivo `postmanEndpoints.js` se encuentran las pegagas a la APP
 
+## Posibilidades de Monitoreo
+- Metricas de contadores, por ejemplo DataDog.
+- Metricas de requets, por ejemplo NewRelic.
+- Y monitoreo de logs, por ejemplo Kibana.
+
 
 ## Descripción del ejercicio
 
