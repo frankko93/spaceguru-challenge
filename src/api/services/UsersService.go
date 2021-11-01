@@ -67,25 +67,6 @@ func Login(ctx context.Context, login models.Login) (string, apierrors.ApiError)
 
 }
 
-func CreateTravel(ctx context.Context, travel models.Travel, user models.User) (models.Travel, apierrors.ApiError) {
-
-	var apiErr apierrors.ApiError
-	var respTravel models.Travel
-
-	tags := utils.BuildTags(utils.Tags{
-		"event":  "CreateFavoritesUser",
-		"source": "UsersService",
-	})
-
-	respTravel, apiErr = dao.InsertTravel(ctx, travel)
-	if apiErr != nil {
-		log.Println("Error: create travel", apiErr, tags)
-		return respTravel, apiErr
-	}
-
-	return respTravel, nil
-}
-
 func SearchUsersDrivers(ctx context.Context, params models.DriversSearchParams) (models.Users, apierrors.ApiError) {
 
 	var apiErr apierrors.ApiError
