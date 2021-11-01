@@ -10,7 +10,7 @@ import (
 	"github.com/frankko93/spaceguru-challenge/src/api/utils"
 )
 
-func CreateTravel(ctx context.Context, travel models.Travel, user models.User) (models.Travel, apierrors.ApiError) {
+func CreateTravel(ctx context.Context, travel models.Travel) (models.Travel, apierrors.ApiError) {
 
 	var apiErr apierrors.ApiError
 	var respTravel models.Travel

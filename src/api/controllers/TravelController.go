@@ -21,12 +21,6 @@ func CreateTravel(c *gin.Context) {
 		"event":  "CreateTravel",
 		"source": "TravelController",
 	})
-	user, exist := c.Get("user")
-	if !exist {
-		log.Println("Error with session", tags)
-		c.JSON(http.StatusBadRequest, apierrors.NewBadRequestApiError("Error with session"))
-		return
-	}
 
 	if err = c.BindJSON(&travel); err != nil {
 		log.Println("Invalid JSON", err, tags)
@@ -34,7 +28,7 @@ func CreateTravel(c *gin.Context) {
 		return
 	}
 
-	userFavorite, apiErr := services.CreateTravel(ctx, travel, user.(models.User))
+	userFavorite, apiErr := services.CreateTravel(ctx, travel)
 	if apiErr != nil {
 		c.JSON(http.StatusInternalServerError, apiErr)
 		return

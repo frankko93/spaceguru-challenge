@@ -22,7 +22,6 @@ func mapsURLToControllers() {
 
 	travel := Router.Group("/travel")
 	{
-		users.Use(middlewares.Authenticate())
 		travel.POST("", controllers.CreateTravel)
 	}
 

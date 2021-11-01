@@ -104,13 +104,13 @@ func SearchUsersDrivers(ctx context.Context, params models.DriversSearchParams) 
 
 	startTime := time.Now()
 	//search users drivers
-	res = db.Table("users").Debug().Joins("left join travels on travels.user_id = users.id").Where(query, queryParams...).Offset(params.PageSize * (params.Page - 1)).Limit(params.PageSize).Scan(&users)
+	res = db.Table("users").Joins("left join travels on travels.user_id = users.id").Where(query, queryParams...).Offset(params.PageSize * (params.Page - 1)).Limit(params.PageSize).Scan(&users)
 	if res.Error != nil {
 		log.Println("Error search users drivers", res.Error, tags)
 		return users, count, apierrors.NewInternalServerApiError("Error search users drivers", res.Error)
 	}
 	//count properties
-	res = db.Table("users").Joins("left join drivers on drivers.user_id = users.id").Where(query, queryParams...).Count(&count)
+	res = db.Table("users").Debug().Joins("left join travels on travels.user_id = users.id").Where(query, queryParams...).Count(&count)
 	endTime := time.Now()
 	log.Println(fmt.Sprintf("query_elapsed_time: %f", endTime.Sub(startTime).Seconds()), tags)
 
